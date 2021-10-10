@@ -16,7 +16,10 @@ import org.springframework.test.context.jdbc.Sql;
  * @author Slamet Hariyono
  */
 @SpringBootTest
-@Sql(scripts = "/sql/delete-invoice-type.sql")
+@Sql(scripts = {
+    "/sql/delete-invoice-type.sql",
+    "/sql/insert-inactive-invoice-type.sql"
+})
 public class InvoiceTypeDaoTests {
 
     @Autowired
@@ -40,12 +43,24 @@ public class InvoiceTypeDaoTests {
         Thread.sleep(1000);
         it.setName("Test Update");
         it = invoiceTypeDao.save(it);
-        System.out.println("ID: " + it.getId());
         System.out.println("Created Time: " + it.getCreated());
-        System.out.println("Created By: " + it.getCreatedBy());
         System.out.println("Updated Time: " + it.getUpdated());
-        System.out.println("Updated By: " + it.getUpdatedBy());
-        System.out.println("Status Record: " + it.getStatusRecord());
+        Assertions.assertNotEquals(it.getCreated(), it.getUpdated());
+    }
 
+    @Test
+    public void testQuerySoftDelete() {
+        Long jumlahRecord = invoiceTypeDao.count();
+        System.out.println("Jumlah Record: " + jumlahRecord);
+        Assertions.assertEquals(1, jumlahRecord);
+    }
+
+    @Test
+    public void testSoftDelete() {
+        InvoiceType invoiceType = invoiceTypeDao.findById("test002").get();
+        invoiceTypeDao.delete(invoiceType);
+        Long jumlahRecord = invoiceTypeDao.count();
+        System.out.println("Jumlah Record: " + jumlahRecord);
+        Assertions.assertEquals(0, jumlahRecord);
     }
 }
