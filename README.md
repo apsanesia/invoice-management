@@ -16,7 +16,7 @@ Diantara metode pembayaran yang akan disupport antara lain
     * QRIS
 
 * Tipe tagihan yang tersedia:
-    * CLOSED: bayar sesuai namonal. Kalau tidak sesuai, ditolak
+    * CLOSED: bayar sesuai nominal. Kalau tidak sesuai, ditolak
     * CLOSED: pembayaran berapapun diterima
     * INSTALLMENT: Pembayaran diterima selama total akumulasi lebih kecil atau sama dengan nilai tagihan
 
