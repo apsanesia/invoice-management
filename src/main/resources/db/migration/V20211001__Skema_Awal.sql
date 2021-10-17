@@ -1,3 +1,25 @@
+CREATE TABLE running_number (
+    id character varying(255) NOT NULL,
+    prefix character varying(100) NOT NULL,
+    last_number bigint NOT NULL
+);
+
+ALTER TABLE ONLY running_number
+    ADD CONSTRAINT running_number_pkey PRIMARY KEY (id);
+
+CREATE TABLE customer (
+    id character varying(255) NOT NULL,
+    created timestamp without time zone,
+    created_by character varying(255),
+    status_record character varying(255) NOT NULL,
+    updated timestamp without time zone,
+    updated_by character varying(255),
+    code character varying(100) NOT NULL,
+    name character varying(255) NOT NULL,
+    email character varying(100) NOT NULL,
+    mobile_phone character varying(300) NOT NULL
+);
+
 CREATE TABLE invoice (
     id character varying(255) NOT NULL,
     created timestamp without time zone,
@@ -11,6 +33,7 @@ CREATE TABLE invoice (
     invoice_number character varying(100) NOT NULL,
     paid boolean NOT NULL,
     invoice_type_id character varying(255) NOT NULL,
+    customer_id character varying(255) NOT NULL,
     CONSTRAINT invoice_amount_check CHECK ((amount >= (0)::numeric))
 );
 
@@ -68,6 +91,9 @@ CREATE TABLE virtual_account (
     payment_provider_id character varying(255) NOT NULL
 );
 
+ALTER TABLE ONLY customer
+    ADD CONSTRAINT customer_pkey PRIMARY KEY (id);
+
 ALTER TABLE ONLY invoice
     ADD CONSTRAINT invoice_pkey PRIMARY KEY (id);
 
@@ -103,3 +129,6 @@ ALTER TABLE ONLY virtual_account
 
 ALTER TABLE ONLY invoice
     ADD CONSTRAINT fkqss90tikrowtmcc9gw6hegq7d FOREIGN KEY (invoice_type_id) REFERENCES invoice_type(id);
+
+ALTER TABLE ONLY invoice
+    ADD CONSTRAINT fk_invoice_customer FOREIGN KEY (customer_id) REFERENCES customer(id);

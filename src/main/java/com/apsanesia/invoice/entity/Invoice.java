@@ -29,6 +29,11 @@ public class Invoice extends BaseEntity {
 
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @NotNull
+    @ManyToOne
     @JoinColumn(name = "invoice_type_id")
     private InvoiceType invoiceType;
 

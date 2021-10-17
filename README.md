@@ -17,8 +17,19 @@ Diantara metode pembayaran yang akan disupport antara lain
 
 * Tipe tagihan yang tersedia:
     * CLOSED: bayar sesuai nominal. Kalau tidak sesuai, ditolak
-    * CLOSED: pembayaran berapapun diterima
+    * OPEN: pembayaran berapapun diterima
     * INSTALLMENT: Pembayaran diterima selama total akumulasi lebih kecil atau sama dengan nilai tagihan
+
+* Fitur aplikasi:
+    * Manajemen Customer
+        * Registrasi Customer
+        * Rekap Tagihan Customer
+        * Histori pembayaran
+
+    * Manajemen invoice
+        * Membuat invoice
+        * Mengganti nilai dan tanggal jatuh tempo
+
 
 # Cara setup database
 
