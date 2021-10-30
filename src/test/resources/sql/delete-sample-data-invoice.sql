@@ -1,0 +1,11 @@
+delete from activity_log;
+delete from invoice_type_configuration;
+delete from virtual_account;
+delete from virtual_account_configuration;
+delete from bank_account;
+delete from bank;
+delete from payment_provider;
+delete from invoice;
+delete from invoice_type;
+delete from customer;
+delete from running_number;

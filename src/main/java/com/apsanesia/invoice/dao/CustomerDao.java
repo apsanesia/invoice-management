@@ -4,17 +4,13 @@
  */
 package com.apsanesia.invoice.dao;
 
-import com.apsanesia.invoice.entity.PaymentProvider;
-import com.apsanesia.invoice.entity.VirtualAccount;
-import java.util.Optional;
+import com.apsanesia.invoice.entity.Customer;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  *
  * @author Banjaranyar
  */
-public interface VirtualAccountDao extends PagingAndSortingRepository<VirtualAccount, String> {
-
-    public Optional<VirtualAccount> findByAccountNumber(String accountNumber);
-
+public interface CustomerDao extends PagingAndSortingRepository<Customer, String>{
+    
 }

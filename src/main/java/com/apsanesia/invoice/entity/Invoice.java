@@ -7,6 +7,8 @@ package com.apsanesia.invoice.entity;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
@@ -57,4 +59,11 @@ public class Invoice extends BaseEntity {
     @NotNull
     private Boolean paid = false;
 
+    @NotNull
+    @Min(0)
+    private BigDecimal totalPayment = new BigDecimal(0);
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus = PaymentStatus.NONE;
 }

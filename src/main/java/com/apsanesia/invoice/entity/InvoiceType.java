@@ -7,6 +7,8 @@ package com.apsanesia.invoice.entity;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -37,6 +39,10 @@ public class InvoiceType extends BaseEntity {
     @Size(min = 3, max = 100)
     private String name;
 
+    @NotNull
+    @NotEmpty
+    private String paymentType;
+
     @ManyToMany
     @JoinTable(
             name = "invoice_type_provider",
@@ -44,4 +50,12 @@ public class InvoiceType extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "payment_provider_id")
     )
     private Set<PaymentProvider> paymentProviders = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "invoice_type_configuration",
+            joinColumns = @JoinColumn(name = "invoice_type_id"),
+            inverseJoinColumns = @JoinColumn(name = "virtual_account_configuration_id")
+    )
+    private Set<VirtualAccountConfiguration> virtualAccountConfigurations = new HashSet<>();
 }
